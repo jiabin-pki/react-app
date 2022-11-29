@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import {
+  Container,
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+} from "@material-ui/core";
+import { IntlProvider } from "react-intl";
+import "./App.css";
+import RouteApp from "./RouteApp";
+import { zh_CN, en_US } from "./lang/en";
 function App() {
+  const theme = createTheme();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline></CssBaseline>
+      <IntlProvider locale="zh" messages={zh_CN}>
+        <RouteApp />
+      </IntlProvider>
+    </ThemeProvider>
   );
 }
 
