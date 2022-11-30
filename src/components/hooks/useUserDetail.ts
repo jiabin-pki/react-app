@@ -10,7 +10,7 @@ export const useUserDetail = () => {
     birthday: new Date().toString(),
   };
   const [userList, setUserList] = React.useState<User[]>();
-  const [currentUser,setCurrentUser]=React.useState<User>(inituser);
+  const [currentUser, setCurrentUser] = React.useState<User>(inituser);
 
   async function getUser() {
     await agent.UserAgent.getUserList().then((res) => {
@@ -18,17 +18,19 @@ export const useUserDetail = () => {
     });
   }
 
-  async function getUserById(id:number) {
-    await agent.UserAgent.getUserById(id).then((res:User) => {
+  async function getUserById(id: number) {
+    await agent.UserAgent.getUserById(id).then((res: User) => {
       setCurrentUser(res);
     });
   }
   async function addUserItem(user: User) {
     await agent.UserAgent.addUser(user).then((res) => {
+      getUser();
     });
   }
   async function updateUserItem(id: number, user: User) {
     await agent.UserAgent.update(id, user).then((res) => {
+      getUser();
     });
   }
 

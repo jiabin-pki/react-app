@@ -18,7 +18,9 @@ const UserInfo: React.FC = ({}) => {
     useUserDetail();
 
   const [id, setId] = useState(parm.id ? parseInt(parm.id) : 0);
-  const [birthday, setValue] = React.useState<Dayjs | null>(dayjs(currentUser.birthday));
+  const [birthday, setValue] = React.useState<Dayjs | null>(
+    dayjs(currentUser.birthday)
+  );
   const [name, setName] = useState<string>(currentUser.name);
   const [age, setAge] = useState<number>(currentUser.age);
   const [user, setUser] = useState<User>(currentUser);
@@ -32,15 +34,14 @@ const UserInfo: React.FC = ({}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     setUser({
-      name:name,
-      age:age,
-      birthday:birthday?.format("MM/DD/YYYY")||"",
-      id:id
-    })
-
-  },[name,age,birthday,id])
+      name: name,
+      age: age,
+      birthday: birthday?.format("MM/DD/YYYY") || "",
+      id: id,
+    });
+  }, [name, age, birthday, id]);
 
   const navigate = useNavigate();
 
